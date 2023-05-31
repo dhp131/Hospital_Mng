@@ -1,4 +1,3 @@
-
 package Business;
 
 import Control.Menu;
@@ -11,7 +10,8 @@ import java.util.HashMap;
 import java.util.List;
 
 /**
- *Danh sách bệnh nhân
+ * Danh sách bệnh nhân
+ *
  * @author Hp
  */
 public class PatientList extends HashMap<String, Patient> {
@@ -31,7 +31,7 @@ public class PatientList extends HashMap<String, Patient> {
         boolean check = true;
         do {
             //Check mã code được yêu cầu nhập vô
-            id = Uses.getStringreg("Enter the ID (PXXXX): ", ("[Pp]\\d{4}$").toUpperCase(), "Code is not null", "Code is not format (PXXXX)");
+            id = Uses.getStringreg("Enter the ID (PXXXX): ", ("^P\\d{4}$"), "Code is not null", "Code is not format (PXXXX)");
             if (this.containsKey(id)) {
                 System.out.println("ID already exists. Please enter a unique ID.");
             } else {
@@ -45,8 +45,13 @@ public class PatientList extends HashMap<String, Patient> {
         address = Uses.getStringNonBlank("Enter your address: ", "Address is not blank");
         phone = Uses.getStringreg("Enter your phone number: ", "0\\d{9}", "Phone number is not null", "Phone number is not format");
         diagnosis = Uses.getString("Enter diagnosis: ");
-        admissionDate = Uses.getString("Enter admission date (dd/MM/yyyy): ");
-        dischargeDate = Uses.getString("Enter discharge date (dd/MM/yyyy): ");
+        admissionDate = Uses.getDate("Enter admission date (dd/MM/yyyy): ", "dd/MM/yyyy");
+        do {
+            dischargeDate = Uses.getDate("Enter discharge date (dd/MM/yyyy): ", "dd/MM/yyyy");
+            if (Uses.toDate(dischargeDate, "dd/MM/yyyy").compareTo(Uses.toDate(admissionDate, "dd/MM/yyyy")) < 0) {
+                System.out.println("Warning: The discharge date must be on the same day or after the admissionDate. Please enter the discharge date again: ");
+            }
+        } while (Uses.toDate(dischargeDate, "dd/MM/yyyy").compareTo(Uses.toDate(admissionDate, "dd/MM/yyyy")) < 0);
 
         NurseList nl = new NurseList();
         int count = 0;
@@ -90,12 +95,12 @@ public class PatientList extends HashMap<String, Patient> {
         System.out.println("Start date: " + startDate);
         System.out.println("End date: " + endDate);
         System.out.println("----------------------------------------------------------------------------------");
-        System.out.println("|  No.| Patient Id | Admission Date | Full name          |     Phone | Diagnosis |");
+        System.out.println("|  No.| Patient Id | Admission Date |     Full name      |  Phone    | Diagnosis |");
         System.out.println("----------------------------------------------------------------------------------");
 
         int index = 1; //đánh dấu vị trí
         for (Patient patient : this.values()) {
-            if (Uses.toDate(patient.getAdmissionDate(), "dd/MM/yyyy").compareTo(Uses.toDate(startDate, "dd/MM/yyyy")) >= 0 
+            if (Uses.toDate(patient.getAdmissionDate(), "dd/MM/yyyy").compareTo(Uses.toDate(startDate, "dd/MM/yyyy")) >= 0
                     && Uses.toDate(patient.getAdmissionDate(), "dd/MM/yyyy").compareTo(Uses.toDate(endDate, "dd/MM/yyyy")) <= 0) {
                 String str = String.format("|%5d", index);
                 System.out.print(str);
@@ -111,10 +116,23 @@ public class PatientList extends HashMap<String, Patient> {
     public void sortPatients() {
         String field;
         String pt;
-        
-        field = Uses.getStringreg("Sorted by (name|id): ", "^(name|id)$", "Sort is not blank", "Sort is not format");
-        pt = Uses.getStringreg("Sorted order (ASC|DESC): ", "^(ASC|DESC)$", "Sort is not blank", "Sort is not format");
 
+        int choice;
+
+        Menu sField = new Menu("Sorted by (patient's id|patient's name):");
+        sField.addOption("Patient's id");
+        sField.addOption("Patient's name");
+        sField.printMenu();
+        choice = sField.getUserChoice();
+        field = choice == 1 ? "id" : "name";
+
+        Menu sPT = new Menu("Sort order (ASC|DESC):");
+        sPT.addOption("ASC");
+        sPT.addOption("DESC");
+        sPT.printMenu();
+        choice = sPT.getUserChoice();
+        pt = choice == 1 ? "ASC" : "DESC";
+        
         Comparator<Patient> comparator;
         if (field.equalsIgnoreCase("id")) {
             comparator = Comparator.comparing(Patient::getId);
@@ -139,7 +157,7 @@ public class PatientList extends HashMap<String, Patient> {
         System.out.println("Sorted by (patient's name|patient's id): " + field);
         System.out.println("Sort order (ASC|DESC): " + pt);
         System.out.println("----------------------------------------------------------------------------------");
-        System.out.println("|  No.| Patient Id | Admission Date | Full name          |     Phone | Diagnosis |");
+        System.out.println("|  No.| Patient Id | Admission Date |     Full name      |  Phone    | Diagnosis |");
         System.out.println("----------------------------------------------------------------------------------");
 
         int index = 1;

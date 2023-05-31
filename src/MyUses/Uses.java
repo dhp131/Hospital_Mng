@@ -246,7 +246,7 @@ public class Uses {
             }
             int day, month, year;
             String[] dateParts = date.split("[- /.]");
-            if (dateFormat.equals("dd/mm/yyyy")) {
+            if (dateFormat.equals("dd/MM/yyyy")) {
                 day = Integer.parseInt(dateParts[0]);
                 month = Integer.parseInt(dateParts[1]);
             } else {
@@ -288,7 +288,7 @@ public class Uses {
     private static final String MMDDYYYY_REGEX = "^(0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])[- /.](19|20)\\d\\d$";
 
     private static boolean isValidDateFormat(String date, String format) {
-        String regex = (format.equals("dd/mm/yyyy")) ? DDMMYYYY_REGEX : MMDDYYYY_REGEX;
+        String regex = (format.equals("dd/MM/yyyy")) ? DDMMYYYY_REGEX : MMDDYYYY_REGEX;
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(date);
         return matcher.matches();

@@ -75,7 +75,7 @@ public class Nurse extends Person implements Serializable {
 
     @Override
     public String toString() {
-        String str = String.format("%s|%s|%d|%s|%s|%s|%s|%s|%f", this.staffID, this.name,
+        String str = String.format("%s,%s,%d,%s,%s,%s,%s,%s,%f", this.staffID, this.name,
                 this.age, this.gender, this.address, this.phone, this.department, this.shift, this.salary);
         return str;
     }

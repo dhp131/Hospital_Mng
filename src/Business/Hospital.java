@@ -42,7 +42,11 @@ public class Hospital {
     }
 
     public void addPatient() {
-        pList.addPatient(nList);
+        if (nList.isEmpty()) {
+            System.out.println("Can not add patient beacuse don't have nurses in list.");
+        } else {
+            pList.addPatient(nList);
+        }
     }
 
     public void displayPatients() {
@@ -81,7 +85,7 @@ public class Hospital {
         data.addAll(useFiles.readFromFile(PATERNDATPATH));
 
         for (String item : data) {
-            String lineSpl[] = item.trim().split("\\|");
+            String lineSpl[] = item.trim().split("\\,");
 
             if (lineSpl[0].matches("^N\\d{4}$")) {
                 nList.put(lineSpl[0],
@@ -108,8 +112,8 @@ public class Hospital {
         }
         System.out.println("Load data successfully!");
     }
-    
-    public void quit(){
+
+    public void quit() {
         if (Menu.getYesOrNo("Do you want to save before quit program?")) {
             saveData();
         }

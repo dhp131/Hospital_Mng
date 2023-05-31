@@ -83,7 +83,7 @@ public class Patient extends Person implements Serializable {
 
     @Override
     public String toString() {
-        String str = String.format("%s|%s|%d|%s|%s|%s|%s|%s|%s|%s", this.id, this.name, this.age,
+        String str = String.format("%s,%s,%d,%s,%s,%s,%s,%s,%s,%s", this.id, this.name, this.age,
                 this.gender, this.address, this.phone, this.diagnosis,
                 this.admissionDate, this.dischargeDate,
                 toStringNl());
