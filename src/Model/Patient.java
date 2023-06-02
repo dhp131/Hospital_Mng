@@ -5,7 +5,7 @@ import java.io.Serializable;
 import java.util.Map.Entry;
 
 public class Patient extends Person implements Serializable {
-
+    private static final long serialVersionUID = 1L;
     String id;
     String diagnosis;
     String admissionDate;
@@ -16,7 +16,7 @@ public class Patient extends Person implements Serializable {
     public Patient() {
     }
 
-    public Patient(String name, int age, String gender, String address, String phone, String id, String diagnosis, String admissionDate, String dischargeDate, NurseList nl) {
+   public Patient(String name, int age, String gender, String address, String phone, String id, String diagnosis, String admissionDate, String dischargeDate, NurseList nl) {
         super(name, age, gender, address, phone);
         this.id = id;
         this.diagnosis = diagnosis;
@@ -66,12 +66,12 @@ public class Patient extends Person implements Serializable {
     }
 
     //chuyển NurstList --> String --> load
-    private String toStringNl() {
-        String stringNL = "";
-        for (Entry<String, Nurse> item : nl.entrySet()) {
-            stringNL += String.format("%s/", item.getKey());
+    private String toStringNursesAssigned(){
+        String str = "";
+        for (Entry<String,Nurse> item : nl.entrySet()) {
+            str += String.format("%s/",item.getKey());
         }
-        return stringNL.substring(0, stringNL.length() - 1);//trả về string, bỏ đi ký tự cuối cùng
+        return str.substring(0, str.length() - 1);
     }
 
     @Override
@@ -86,7 +86,7 @@ public class Patient extends Person implements Serializable {
         String str = String.format("%s,%s,%d,%s,%s,%s,%s,%s,%s,%s", this.id, this.name, this.age,
                 this.gender, this.address, this.phone, this.diagnosis,
                 this.admissionDate, this.dischargeDate,
-                toStringNl());
+                toStringNursesAssigned());
         return str;
     }
 }

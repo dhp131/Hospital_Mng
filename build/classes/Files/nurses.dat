@@ -1,5 +1,19 @@
-N0003,The Hieu,20,Male,Da Lat,0123456789,Khoa Rang,Day,18000.000000
-N0002,Truong Tho,20,Male,Dong Thap,0987654321,Khoa Noi,Night,20000.000000
-N0004,Hoang Dat,20,Male,Dak Nong,0998877665,Khoa Chan,Day,19000.000000
-N0006,Ngoc Ngan,20,Female,Soc Trang,0113355779,Khoa Duoc,Night,18000.000000
-N0001,Hoai Phuong,20,Female,Bien Hoa,0961977302,Khoa Y,Night,20000.000000
+N0010,Lam Dung,22,Male,Binh Dinh,0193382937,Khoa Chan,Day,26000.000000
+N0001,Hoai Phuong,20,Female,Bien Hoa,0961977302,Khoa Ngoai,Night,29000.000000
+N0012,Tri Nguyen,24,Male,Dong Nai,0192736278,Khoa Phau Thuat,Day,30000.000000
+N0011,Truc Ngoc,26,Female,Ha Noi,0199382764,Khoa Cap Cuu,Night,29000.000000
+N0003,The Hieu,20,Male,Lam Dong,0987654321,Khoa Rang,Day,28000.000000
+N0014,Bao Tran,23,Female,Ben Tre,0981726378,Khoa Noi,Day,29000.000000
+N0002,Truong Tho,20,Male,Dong Thap,0123456789,Khoa Noi,Night,30000.000000
+N0013,Phuc Thanh,24,Male,Da Lat,0482918726,Khoa Ngoai,Day,28000.000000
+N0005,Thanh Tung,22,Male,Bien Hoa,0112233445,Khoa Y Hoc Co Truyen,Day,25000.000000
+N0016,Linh Lan,23,Female,Ho Chi Minh,0997750931,Khoa Ngoai,29000,29000.000000
+N0004,Ngoc Ngan,21,Female,Soc Trang,0998877665,Khoa Duoc,NIght,28000.000000
+N0015,Kim Truc,22,Female,Hung Yen,0981726354,Khoa San,Night,27000.000000
+N0007,Hoang Phuc,23,Male,Vinh Long,0113355778,Khoa Vat Li Tri Lieu,Day,27000.000000
+N0018,Ngoc Le,23,Female,Ho Chi Minh,0997710331,Khoa Ngoai,29000,29000.000000
+N0006,Dung Nhi,22,Female,Khoa San,0224466889,Khoa San,Day,30000.000000
+N0017,Kim Thu,22,Female,Long Binh,0928787738,Khoa Noi,Night,30000.000000
+N0009,Kim Thuong,22,Female,Long Thanh,0928751738,Khoa Noi,Night,30000.000000
+N0008,Ngoc Lan,23,Female,Ho Chi Minh,0997755331,Khoa Ngoai,29000,29000.000000
+N0019,Hoai Thuong,22,Female,Binh Thanh,0288751738,Khoa Noi,Night,30000.000000

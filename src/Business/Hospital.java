@@ -16,9 +16,8 @@ import java.util.Map.Entry;
  */
 public class Hospital {
 
-    public static HashMap<String, Nurse> nurses = new HashMap<>();
-    public static HashMap<String, Patient> patients = new HashMap<>();
-
+//    public static HashMap<String, Nurse> nurses = new HashMap<>();
+//    public static HashMap<String, Patient> patients = new HashMap<>();
     NurseList nList = new NurseList();
     PatientList pList = new PatientList();
 
@@ -85,7 +84,7 @@ public class Hospital {
         data.addAll(useFiles.readFromFile(PATERNDATPATH));
 
         for (String item : data) {
-            String lineSpl[] = item.trim().split("\\,");
+            String lineSpl[] = item.trim().split(",");
 
             if (lineSpl[0].matches("^N\\d{4}$")) {
                 nList.put(lineSpl[0],
@@ -96,7 +95,7 @@ public class Hospital {
                                 Double.parseDouble(lineSpl[8])));
 
             } else if (lineSpl[0].matches("^P\\d{4}$")) {
-                String[] nll = lineSpl[9].split("\\,");
+                String[] nll = lineSpl[9].split("/");
                 NurseList nl = new NurseList();
 
                 for (String n : nll) {
@@ -108,6 +107,16 @@ public class Hospital {
                         lineSpl[0], lineSpl[6], lineSpl[7], lineSpl[8],
                         nl)
                 );
+            }
+        }
+        for (String nurseKey : nList.keySet()) {
+            for (String patientKey : pList.keySet()) {
+                Patient patient = pList.get(patientKey);
+                for (String nuListKey : patient.getNl().keySet()) {
+                    if (nuListKey.contains(nurseKey)) {
+                        nList.get(nurseKey).incNumPatientAssign();
+                    }
+                }
             }
         }
         System.out.println("Load data successfully!");

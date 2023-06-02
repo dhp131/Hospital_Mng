@@ -284,11 +284,11 @@ public class Uses {
         }
     }
 
-    private static final String DDMMYYYY_REGEX = "^(0[1-9]|[12][0-9]|3[01])[- /.](0[1-9]|1[012])[- /.](19|20)\\d\\d$";
-    private static final String MMDDYYYY_REGEX = "^(0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])[- /.](19|20)\\d\\d$";
+    private static final String DDMMYYYY_REGEX = "^(0[1-9]|1[0-9]|2[0-9]|3[01])[- /.](0[1-9]|1[012])[- /.](19|20)\\d\\d$";
+//    private static final String MMDDYYYY_REGEX = "^(0[1-9]|1[012])[- /.](0[1-9]|1[0-9]|2[0-9]|3[01])[- /.](19|20)\\d\\d$";
 
     private static boolean isValidDateFormat(String date, String format) {
-        String regex = (format.equals("dd/MM/yyyy")) ? DDMMYYYY_REGEX : MMDDYYYY_REGEX;
+        String regex =  DDMMYYYY_REGEX;
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(date);
         return matcher.matches();

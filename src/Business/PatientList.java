@@ -18,6 +18,19 @@ public class PatientList extends HashMap<String, Patient> {
 
     //Add patient
     public void addPatient(NurseList nList) {
+         // Check if all nurses have tasks
+            boolean allNursesHaveTasks = true;
+            for (Nurse nurse : nList.values()) {
+                if (nurse.getNumPatientAssign() < 2) {
+                    allNursesHaveTasks = false;
+                    break;
+                }
+            }
+            if (allNursesHaveTasks) {
+                System.out.println("All nurses have tasks. Cannot add new patient.");
+                return;
+            }
+
         String name;
         int age;
         String gender;
@@ -132,7 +145,7 @@ public class PatientList extends HashMap<String, Patient> {
         sPT.printMenu();
         choice = sPT.getUserChoice();
         pt = choice == 1 ? "ASC" : "DESC";
-        
+
         Comparator<Patient> comparator;
         if (field.equalsIgnoreCase("id")) {
             comparator = Comparator.comparing(Patient::getId);
